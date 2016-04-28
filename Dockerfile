@@ -1,9 +1,9 @@
 FROM charliek/openjdk-jre-7
-MAINTAINER Ben Firshman "ben@orchardup.com"
 
+ENV ES_VERSION=1.2
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl sudo
 RUN curl http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-RUN echo "deb http://packages.elasticsearch.org/elasticsearch/1.2/debian stable main" >> /etc/apt/sources.list
+RUN echo "deb http://packages.elasticsearch.org/elasticsearch/${ES_VERSION}/debian stable main" >> /etc/apt/sources.list
 RUN apt-get -qq update && DEBIAN_FRONTEND=noninteractive apt-get install -y elasticsearch
 ADD run /usr/local/bin/run
 RUN chmod +x /usr/local/bin/run
